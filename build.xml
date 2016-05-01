@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="B2BDemo.NOSQL">
+  <property environment="env"/>
+  <property name="B2BDemo.location" value="../"/>
+  <property name="debuglevel" value="source,lines,vars"/>
+  <property name="target" value="1.7"/>
+  <property name="source" value="1.7"/>
+  <path id="B2BDemo.NOSQL.classpath">
+    <pathelement location="classes"/>
+    <pathelement location="${env.DYNAMO_HOME}/../BIZUI/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../WebUI/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../Publishing/base/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DSS/lib/resources.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DSS/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DPS/lib/resources.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DPS/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS-UI/lib/uiresources.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS-UI/lib/uiclasses.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS-UI/lib/jhall.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../RL/lib/RLClient.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/resources.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/servlet.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/jsp-api.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/ice.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/cglib-nodep-2.1_3.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/spring-aop-1.2-rc1.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/jline-0.9.94.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DAS/lib/validation-api-1.0.0.GA.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DCS/lib/classes.jar"/>
+    <pathelement location="${env.DYNAMO_HOME}/../DCS/lib/resources.jar"/>
+  	<pathelement location="${env.DYNAMO_HOME}/../DAS/lib/min-ejb3-api.jar"/>
+  	<pathelement location="${B2BDemo.location}/Common/lib/commons-collections-3.2.1.jar"/>
+    <pathelement location="${B2BDemo.location}/Common/lib/jackson-annotations-2.2.1.jar"/>
+    <pathelement location="${B2BDemo.location}/Common/lib/jackson-core-2.2.1.jar"/>
+    <pathelement location="${B2BDemo.location}/Common/lib/jackson-databind-2.2.1.jar"/>
+    <pathelement path="${ATG.classpath}" />
+  </path>
+  <target name="init">
+    <mkdir dir="classes"/>
+    <copy includeemptydirs="false" todir="classes">
+      <fileset dir="src">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+  </target>
+  <target name="clean">
+    <delete dir="classes"/>
+  </target>
+  <target depends="clean" name="cleanall"/>
+  <target depends="build-subprojects,build-project" name="build"/>
+  <target name="build-subprojects"/>
+  <target depends="init" name="build-project">
+    <echo message="${ant.project.name}: ${ant.file}"/>
+    <javac debug="true" debuglevel="${debuglevel}" destdir="classes" includeantruntime="false" source="${source}" target="${target}">
+      <src path="src"/>
+      <classpath refid="B2BDemo.NOSQL.classpath"/>
+    </javac>
+  </target>
+  <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+    <copy todir="${ant.library.dir}">
+      <fileset dir="${env.ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+    </copy>
+    <unzip dest="${ant.library.dir}">
+      <patternset includes="jdtCompilerAdapter.jar"/>
+      <fileset dir="${env.ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+    </unzip>
+  </target>
+  <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+    <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+    <antcall target="build"/>
+  </target>
+</project>

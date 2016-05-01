@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+ATG-Product: B2BDemo.MongoDBIntegration
+ATG-Client-Class-Path: classes
+ATG-Class-Path: classes
+ATG-Config-Path: config
+
+Name: classes
+ATG-Client-Update-File: true

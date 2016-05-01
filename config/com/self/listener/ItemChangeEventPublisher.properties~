@@ -1,0 +1,5 @@
+# /com/self/listener/ItemChangeEventPublisher
+$class=com.self.listener.ItemChangeEventPublisher
+ItemQueueRepository=/com/self/mongodb/MongoQueueRepository
+ItemQueueRQLUtils=/com/self/util/ItemQueueRQLUtils
+productionTargetName=production
