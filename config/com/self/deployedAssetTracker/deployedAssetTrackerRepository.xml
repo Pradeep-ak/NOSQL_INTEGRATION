@@ -5,7 +5,7 @@
         "http://www.atg.com/dtds/gsa/gsa_1.0.dtd">	
 <gsa-template>
   <header>
-	<name>MongoDB Queue Repository</name>
+	<name>Deployed Asset Tracker Repository</name>
 	<author>Self Team</author> 
 	<version>1.0</version>
 	<description>A repository to hold item changed record logs</description>   

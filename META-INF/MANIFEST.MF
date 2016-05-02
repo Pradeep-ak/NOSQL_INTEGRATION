@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-ATG-Product: B2BDemo.MongoDBIntegration
+ATG-Product: B2BDemo.NOSQL
 ATG-Client-Class-Path: classes
 ATG-Class-Path: classes
 ATG-Config-Path: config

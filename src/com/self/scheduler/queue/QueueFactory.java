@@ -1,4 +1,4 @@
-package com.self.schedulercode.javaqueue;
+package com.self.scheduler.queue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,5 +26,4 @@ public class QueueFactory {
 		}
 		return mBlockingQueueMap.get(pName);
 	}
-	
 }

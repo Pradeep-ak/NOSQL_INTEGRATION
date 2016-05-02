@@ -20,7 +20,7 @@ import atg.repository.RepositoryException;
 import atg.repository.RepositoryItem;
 import atg.versionmanager.WorkingVersion;
 
-import com.self.util.MongoQueueRepositoryConstants;
+import com.self.util.QueueRepositoryConstants;
 import com.self.util.RQLUtils;
 
 public class ItemChangeEventPublisher extends GenericService 
@@ -51,14 +51,14 @@ public class ItemChangeEventPublisher extends GenericService
 				
 				Map<String, Object> param = new HashMap<String, Object>();
 				
-				param.put(MongoQueueRepositoryConstants.IP_DEPLOYMENTID, 
+				param.put(QueueRepositoryConstants.IP_DEPLOYMENTID, 
 						pEvent.getDeploymentID());
 				
 				/*param.put(MongoQueueRepositoryConstants.IP_DEPLOYMENTDATE, 
 						pEvent.getDeploymentBeginTimestamp());*/
 				
 				MutableRepositoryItem item = (MutableRepositoryItem) getItemQueueRQLUtils(
-						).create(MongoQueueRepositoryConstants.ID_SNAPSHOTITEMS, param);
+						).create(QueueRepositoryConstants.ID_SNAPSHOTITEMS, param);
 				
 				if (isLoggingDebug()) {
 					logDebug("deploymentEvent: " + "Adding Snapshot item for deployment " 
@@ -80,7 +80,7 @@ public class ItemChangeEventPublisher extends GenericService
 				}
 				item.setPropertyValue("snapShotId", item.getRepositoryId());
 				List<RepositoryItem> items = getSynchItems(deploymentProjectID);
-				item.setPropertyValue(MongoQueueRepositoryConstants.IP_SYNCHITEMS, items);
+				item.setPropertyValue(QueueRepositoryConstants.IP_SYNCHITEMS, items);
 				
 				getItemQueueRepository().updateItem(item);
 				
@@ -109,17 +109,17 @@ public class ItemChangeEventPublisher extends GenericService
 						}
 						
 						Map<String, Object> param = new HashMap<String, Object>();
-						param.put(MongoQueueRepositoryConstants.IP_ITEMID, asset.getURI().getRepositoryID());
-						param.put(MongoQueueRepositoryConstants.IP_ASSETVERSION, asset.getURI().getURIPart(
-								MongoQueueRepositoryConstants.ASSET_VERSION));
-						param.put(MongoQueueRepositoryConstants.IP_ITEMDESCRIPTORNAME, asset.getURI().getURIPart(
-								MongoQueueRepositoryConstants.ITEM_DESCRIPTOR_NAME));						
-						param.put(MongoQueueRepositoryConstants.IP_REPOSITORYNAME, asset.getURI().getURIPart(
-								MongoQueueRepositoryConstants.REPOSITORY_NAME));
-						param.put(MongoQueueRepositoryConstants.IP_ISSYNCHED, Boolean.FALSE);
+						param.put(QueueRepositoryConstants.IP_ITEMID, asset.getURI().getRepositoryID());
+						param.put(QueueRepositoryConstants.IP_ASSETVERSION, asset.getURI().getURIPart(
+								QueueRepositoryConstants.ASSET_VERSION));
+						param.put(QueueRepositoryConstants.IP_ITEMDESCRIPTORNAME, asset.getURI().getURIPart(
+								QueueRepositoryConstants.ITEM_DESCRIPTOR_NAME));						
+						param.put(QueueRepositoryConstants.IP_REPOSITORYNAME, asset.getURI().getURIPart(
+								QueueRepositoryConstants.REPOSITORY_NAME));
+						param.put(QueueRepositoryConstants.IP_ISSYNCHED, Boolean.FALSE);
 						
 						MutableRepositoryItem item = (MutableRepositoryItem) getItemQueueRQLUtils().create(
-								MongoQueueRepositoryConstants.ID_SYNCHITEM, param);
+								QueueRepositoryConstants.ID_SYNCHITEM, param);
 						itemList.add(item);
 					}
 				}

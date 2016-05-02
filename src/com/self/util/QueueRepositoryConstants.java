@@ -1,6 +1,6 @@
 package com.self.util;
 
-public final class MongoQueueRepositoryConstants {
+public final class QueueRepositoryConstants {
 
 	public static final String IP_DEPLOYMENTID = "deploymentId";
 	public static final String IP_DEPLOYMENTDATE = "deploymentDate";

@@ -1,16 +1,12 @@
-package com.self.schedulercode;
+package com.self.scheduler;
 
-import java.util.List;
 import java.util.Map;
 
 import atg.repository.MutableRepository;
-import atg.repository.RepositoryException;
-import atg.repository.RepositoryItem;
 import atg.service.scheduler.ScheduledJob;
 import atg.service.scheduler.Scheduler;
 import atg.service.scheduler.SingletonSchedulableService;
 
-import com.self.util.MongoQueueRepositoryConstants;
 import com.self.util.RQLUtils;
 
 public class CatalogDataIntegration extends SingletonSchedulableService {
