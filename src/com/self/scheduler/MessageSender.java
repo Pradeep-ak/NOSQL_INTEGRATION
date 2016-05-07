@@ -13,6 +13,9 @@ import com.self.scheduler.queue.Utils;
 import com.self.util.QueueRepositoryConstants;
 import com.self.util.RQLUtils;
 
+/**
+ * The Class MessageSender.
+ */
 public class MessageSender extends Thread {
 	
 	private RQLUtils mItemQueueRQLUtils;

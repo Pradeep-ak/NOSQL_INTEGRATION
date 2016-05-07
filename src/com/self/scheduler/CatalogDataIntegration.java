@@ -1,5 +1,8 @@
 package com.self.scheduler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import atg.repository.MutableRepository;
@@ -25,7 +28,11 @@ public class CatalogDataIntegration extends SingletonSchedulableService {
 	
 	@Override
 	public void doScheduledTask(Scheduler pScheduler, ScheduledJob pScheduledJob) {
-
+			
+			System.out.println( "Next time it will run @ : " + 
+					new SimpleDateFormat("MM-dd-yyyy hh:mm:ss a", Locale.US).format(new Date(
+							pScheduledJob.getNextJobTime())));
+		
 			if (isActive()) {
 					
 					
