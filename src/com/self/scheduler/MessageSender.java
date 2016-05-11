@@ -18,6 +18,8 @@ import com.self.util.RQLUtils;
  */
 public class MessageSender extends Thread {
 	
+	private static final String MESSAGE_PROCESSOR = "MESSAGE_PROCESSOR";
+
 	private RQLUtils mItemQueueRQLUtils;
 	
 	private Map<String, String> mQueueItemDescNameMap;
@@ -45,7 +47,7 @@ public class MessageSender extends Thread {
 										&& mQueueItemDescNameMap.get(queueKey) != null) {
 									
 									BlockingQueue<SynchMessage> queue = QueueFactory.getBlockingQueue(
-											mQueueItemDescNameMap.get(queueKey));
+											MESSAGE_PROCESSOR);
 									if (queue != null) {
 										Utils.putIntoQueue(queue, message);
 									}
